@@ -1,0 +1,65 @@
+@font-face {
+    font-family: "cream cake";
+    src: url(./fonts/cream_cake.otf);
+}
+
+
+html{
+    background-color: #B7C4CF;
+}
+
+#page-title{
+    font-family: "cream cake";
+    color: #967E76;
+    font-size: 6rem;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    text-align: center;
+}
+
+#start-date{
+    font-family: "cream cake";
+    color: #967E76;
+    font-size: 2rem;
+    margin-top: 0px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+#button-container{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.button{
+    background-color: #516575;
+    border: 5px solid;
+    border-color: #967E76;
+    flex: 1;
+    max-width: 300px;
+    height: 80px;
+    border-radius: 50px;
+}
+
+.button-text{
+    font-family: "cream cake";
+    color: #D7C0AE;
+    font-size: 3rem;
+    float: right;
+    padding-right: 45px;
+    padding-top: 9px; 
+}
+
+.button-link{
+    border-radius: 100px;
+}
+
+#drum-icon{
+    padding-left: 15px
+}
+
+#calculator-icon{
+    padding-left: 15px;
+    margin-top: 7px;
+}

@@ -1,0 +1,202 @@
+@font-face {
+    font-family: "cream cake";
+    src: url(../fonts/cream_cake.otf);
+}
+
+@font-face {
+    font-family: "calculator";
+    src: url(../fonts/calculator.ttf);
+}
+
+
+body{
+    background-color: #B7C4CF;
+}
+
+#content-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1{
+    font-family: "cream cake";
+    font-size: 5rem;
+    color: #D7C0AE;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#title-container{
+    flex:1;
+    background-color: #516575;
+    text-align: center;
+    width: 50%;
+    border-radius: 50px;
+    border: 10px solid #967E76;
+}
+
+#calculator-container{
+    display: grid;
+    background-color: #516575;
+    border: 10px solid #967E76;
+    width: 500px;
+    height: 800px;
+    border-radius: 50px;
+    margin-top: 50px;
+    padding-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+
+    grid-template-columns: repeat(4, auto);
+    grid-template-rows: repeat(6, auto); 
+    gap: 5px;
+
+}
+
+#grid-screen{
+    display: flex;
+    background-color: #EEE3CB;
+    border: 8px solid #D7C0AE;
+    border-radius: 30px;
+    height: 120px;
+    font-family: calculator;
+    font-weight: bold;
+    color: #967E76;
+    font-size: 7rem;
+    grid-column: 1/5;
+    align-items: center;
+    justify-content: right;
+    
+}
+
+#grid-screen > p{
+    padding-right: 20px;
+}
+
+.key{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #B7C4CF;
+    border-radius: 30px;
+    border: 8px solid #D7C0AE;
+    font-family: calculator;
+    font-weight: bold;
+    color: #967E76;
+}
+
+.clear{
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+
+.divide{
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+
+.multiply{
+    grid-column: 3/4;
+    grid-row: 2/3;
+}
+
+.subtract{
+    grid-column: 4/5;
+    grid-row: 2/3;
+}
+
+.plus{
+    width: 100;
+    grid-column: 4;
+    grid-row: 3/5;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 3rem;
+    text-align: center;
+    max-width: 100px;
+    max-height: 230px;
+}
+
+.seven{
+    grid-column: 1/2;
+    grid-row: 3/4;
+}
+
+.eight{
+    grid-column: 2/3;
+    grid-row: 3/4;
+}
+
+.nine{
+    grid-column: 3/4;
+    grid-row: 3/4;
+}
+
+.four{
+    grid-column: 1/2;
+    grid-row: 4/5;
+}
+
+.five{
+    grid-column: 2/3;
+    grid-row: 4/5;
+}
+
+.six{
+    grid-column: 3/4;
+    grid-row: 4/5;
+}
+
+.one{
+    grid-column: 1/2;
+    grid-row: 5/6;
+}
+
+.two{
+    grid-column: 2/3;
+    grid-row: 5/6;
+}
+
+.three{
+    grid-column: 3/4;
+    grid-row: 5/6;
+}
+
+.enter{
+    grid-column: 4;
+    grid-row: 5/7;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 5rem;
+    text-align: center;
+    max-width: 100px;
+    max-height: 236px;
+}
+
+.zero
+{
+    grid-column: 1/3;
+    grid-row: 6/7;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 5rem;
+    text-align: center;
+    max-height: 100px;
+    max-width: 227px;
+}
+
+.decimal{
+    grid-column: 3/4;
+    grid-row: 6/7;
+}
+
+.small{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 5rem;
+    text-align: center;
+    max-height: 100px;
+    max-width: 100px;
+}
