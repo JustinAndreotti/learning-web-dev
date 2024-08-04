@@ -68,6 +68,8 @@ h1{
     grid-column: 1/5;
     align-items: center;
     justify-content: right;
+    overflow-x: scroll;
+    overflow-y: hidden;
     
 }
 
@@ -85,6 +87,8 @@ h1{
     font-family: calculator;
     font-weight: bold;
     color: #967E76;
+    user-select: none;
+    cursor: default;
 }
 
 .clear{
