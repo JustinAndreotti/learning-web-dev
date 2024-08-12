@@ -18,7 +18,7 @@
     * since the left operand is zero due to defauly state, set the rightOperand to the currentDisplayText
     * Figure out the last operator the user pressed
     * Perform that arithmetic and store it as the result and the new left operand
-    * Display the result until the user enteres in the next numerical value 
+    * Display the result until the user enters in the next numerical value 
 
 */
 
