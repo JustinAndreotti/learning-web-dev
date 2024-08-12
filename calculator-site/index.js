@@ -20,6 +20,13 @@
     * Perform that arithmetic and store it as the result and the new left operand
     * Display the result until the user enters in the next numerical value 
 
+ - Future Feature
+    * I would like to implement a history off to the side on desktop and below on mobile that shows
+      the previous operands and their results as you go through the buttons on the calculator
+      Example:
+        * 10 + 10
+          = 20
+
 */
 
 
@@ -82,17 +89,14 @@ document.querySelector(".decimal").addEventListener("click", decimalPressed);
 //Handle a number key being pressed
 function numberPressed()
 {
-    console.log("Number key has been pressed");         //DEBUG: log the key was pressed
     //append the number pressed to currentDisplayText
     var keyPressed = this.textContent;
-    console.log(keyPressed);                            //DEBUG
-    console.log(typeof(keyPressed));                    //DEBUG
     if (calcData.currentDisplayText === "0")
     {
         calcData.currentDisplayText = "";
     }
+    //update display backend
     calcData.currentDisplayText = calcData.currentDisplayText + keyPressed;
-    console.log(calcData.currentDisplayText);           //DEBUG
     //set currentDisplayText to the calculator screen
     document.querySelector("#grid-screen > p").textContent = calcData.currentDisplayText;
 }
@@ -104,7 +108,6 @@ function numberPressed()
 //Handle the clear key being pressed
 function clearPressed()
 {
-    console.log("Clear key has been pressed");          //DEBUG: log the key was pressed
     //reset the calculator data storage and display screen to default:
     calcData.leftOperand = 0;
     calcData.rightOperand = 0;
@@ -113,7 +116,6 @@ function clearPressed()
     document.querySelector("#grid-screen > p").textContent = "0";
     calcData.decimalFlag = false;
     calcData.operatorFlag = false;
-
 }
 
 
@@ -123,8 +125,6 @@ function clearPressed()
 // Handle the decimal key being pressed
 function decimalPressed()
 {
-    console.log("Decimal Key Has been pressed")         //DEBUG: log the key was pressed
-
     //check if its been pressed already for this operand
     if (calcData.decimalFlag === false)
     {
@@ -132,15 +132,10 @@ function decimalPressed()
         calcData.decimalFlag = true;
         //append the decimal to the end of the currentDisplayText
         var keyPressed = this.textContent;
-        console.log(keyPressed);                            //DEBUG
-        console.log(typeof(keyPressed));                    //DEBUG
         calcData.currentDisplayText = calcData.currentDisplayText + keyPressed;
-        console.log(calcData.currentDisplayText);           //DEBUG
         //update the screen of the calculator on the website
         document.querySelector("#grid-screen > p").textContent = calcData.currentDisplayText;
     }
-    else  console.log("Decimal already added to operand");  //DEBUG
-    
 }
 
 
@@ -150,14 +145,14 @@ function decimalPressed()
 //Handle an operator key being pressed
 function operatorPressed()
 {
-    console.log("Operator key has been pressed");       //DEBUG: log the key was pressed
+    //log the key
     var keyPressed = this.textContent;
     calcData.lastOperatorPressed = this.textContent;
 
     //perform operation
     if (calcData.operatorFlag === false)
     {
-        calcData.leftOperand = parseInt(calcData.currentDisplayText, 10);
+        calcData.leftOperand = parseFloat(calcData.currentDisplayText, 10);
         calcData.operatorFlag = true;
     }
     else if (calcData.operatorFlag === true)
@@ -165,19 +160,13 @@ function operatorPressed()
         completeOperation(keyPressed);
     }
 
-
-    console.log("Result: " + calcData.result); //DEBUG
-    
     //setFlag
     calcData.operatorFlag = true;
+    calcData.decimalFlag = false;
     
     //reset the display
     calcData.currentDisplayText = "0";
     document.querySelector("#grid-screen > p").textContent = calcData.result;
-   
-
-    
-
 }
 
 
@@ -187,11 +176,11 @@ function operatorPressed()
 //Handle the enter key being pressed
 function enterPressed()
 {
-    console.log("Enter key has been pressed");          //DEBUG: log the key was pressed
     completeOperation(calcData.lastOperatorPressed);
     console.log("result: " + calcData.result);
     //setFlag
     calcData.operatorFlag = true;
+    calcData.decimalFlag = false;
 
     //reset the display
     calcData.currentDisplayText = "0";
@@ -207,27 +196,23 @@ function completeOperation(keyPressed)
     switch (keyPressed) 
         {
             case '+':
-                calcData.rightOperand = parseInt(calcData.currentDisplayText, 10);
-                console.log("Numbers: " + calcData.leftOperand + "+" + calcData.rightOperand);   //DEBUG
-                console.log("types: " + typeof(calcData.leftOperand) + "+" + typeof(calcData.rightOperand));   //DEBUG
+                calcData.rightOperand = parseFloat(calcData.currentDisplayText);
                 calcData.result = calcData.leftOperand + calcData.rightOperand;
                 calcData.leftOperand = calcData.result;
                 break;
             case '-':
                 console.log("Left Operand: " + calcData.leftOperand);
-                calcData.rightOperand = parseInt(calcData.currentDisplayText, 10);
-                console.log("Numbers: " + calcData.leftOperand + "-" + calcData.rightOperand);   //DEBUG
-                console.log("types: " + typeof(calcData.leftOperand) + "-" + typeof(calcData.rightOperand));   //DEBUG
+                calcData.rightOperand = parseFloat(calcData.currentDisplayText, 10);
                 calcData.result = calcData.leftOperand - calcData.rightOperand;
                 calcData.leftOperand = calcData.result;
                 break;
             case '*':
-                calcData.rightOperand = parseInt(calcData.currentDisplayText, 10);
+                calcData.rightOperand = parseFloat(calcData.currentDisplayText, 10);
                 calcData.result = calcData.leftOperand * calcData.rightOperand;
                 calcData.leftOperand = calcData.result;
                 break;
             case '/':
-                calcData.rightOperand = parseInt(calcData.currentDisplayText, 10);
+                calcData.rightOperand = parseFloat(calcData.currentDisplayText, 10);
                 calcData.result = calcData.leftOperand / calcData.rightOperand;
                 calcData.leftOperand = calcData.result;
                 break;
