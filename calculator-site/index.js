@@ -36,7 +36,8 @@ var calcData = {
     result: 0,
     currentDisplayText: document.querySelector("#grid-screen > p").textContent,
     decimalFlag: false,
-    operatorFlag: false
+    operatorFlag: false,
+    lastOperatorPressed: null
 }
 
 
@@ -96,11 +97,9 @@ function numberPressed()
     document.querySelector("#grid-screen > p").textContent = calcData.currentDisplayText;
 }
 
-//Handle an operator key being pressed
-function operatorPressed()
-{
-    console.log("Operator key has been pressed");       //DEBUG: log the key was pressed
-}
+
+
+
 
 //Handle the clear key being pressed
 function clearPressed()
@@ -117,11 +116,9 @@ function clearPressed()
 
 }
 
-//Handle the enter key being pressed
-function enterPressed()
-{
-    console.log("Enter key has been pressed");          //DEBUG: log the key was pressed
-}
+
+
+
 
 // Handle the decimal key being pressed
 function decimalPressed()
@@ -144,4 +141,92 @@ function decimalPressed()
     }
     else  console.log("Decimal already added to operand");  //DEBUG
     
+}
+
+
+
+
+
+//Handle an operator key being pressed
+function operatorPressed()
+{
+    console.log("Operator key has been pressed");       //DEBUG: log the key was pressed
+    var keyPressed = this.textContent;
+    lastOperatorPressed = this.textContent;
+
+    //perform operation
+    if (calcData.operatorFlag === false)
+    {
+        calcData.leftOperand = parseInt(calcData.currentDisplayText, 10);
+        calcData.operatorFlag = true;
+    }
+
+    if (calcData.operatorFlag === true)
+    {
+        switch (keyPressed) 
+        {
+            case '+':
+                calcData.rightOperand = parseInt(calcData.currentDisplayText, 10);
+                console.log("Numbers: " + calcData.leftOperand + "+" + calcData.rightOperand);   //DEBUG
+                console.log("types: " + typeof(calcData.leftOperand) + "+" + typeof(calcData.rightOperand));   //DEBUG
+                calcData.result = calcData.leftOperand + calcData.rightOperand;
+                calcData.leftOperand = calcData.result;
+                break;
+            case '-':
+                console.log("Left Operand: " + calcData.leftOperand);
+                calcData.rightOperand = parseInt(calcData.currentDisplayText, 10);
+                console.log("Numbers: " + calcData.leftOperand + "-" + calcData.rightOperand);   //DEBUG
+                console.log("types: " + typeof(calcData.leftOperand) + "-" + typeof(calcData.rightOperand));   //DEBUG
+                calcData.result = calcData.leftOperand - calcData.rightOperand;
+                calcData.leftOperand = calcData.result;
+                break;
+            case '*':
+                calcData.rightOperand = parseInt(calcData.currentDisplayText, 10);
+                calcData.result = calcData.leftOperand * calcData.rightOperand;
+                calcData.leftOperand = calcData.result;
+                break;
+            case '/':
+                calcData.rightOperand = parseInt(calcData.currentDisplayText, 10);
+                calcData.result = calcData.leftOperand / calcData.rightOperand;
+                calcData.leftOperand = calcData.result;
+                break;
+            default:
+                break;
+        }
+    
+    }
+
+
+    console.log("Result: " + calcData.result); //DEBUG
+    
+    //setFlag
+    calcData.operatorFlag = true;
+    
+    //reset the display
+    calcData.currentDisplayText = "0";
+    document.querySelector("#grid-screen > p").textContent = calcData.cresult;
+   
+
+    
+
+}
+
+
+
+
+
+//Handle the enter key being pressed
+function enterPressed()
+{
+    console.log("Enter key has been pressed");          //DEBUG: log the key was pressed
+    document.querySelector("#grid-screen > p").textContent = calcData.cresult;
+}
+
+
+
+
+
+function completeOperation(keyPressed)
+{
+
 }
