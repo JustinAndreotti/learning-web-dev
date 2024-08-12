@@ -152,7 +152,7 @@ function operatorPressed()
 {
     console.log("Operator key has been pressed");       //DEBUG: log the key was pressed
     var keyPressed = this.textContent;
-    lastOperatorPressed = this.textContent;
+    calcData.lastOperatorPressed = this.textContent;
 
     //perform operation
     if (calcData.operatorFlag === false)
@@ -160,10 +160,51 @@ function operatorPressed()
         calcData.leftOperand = parseInt(calcData.currentDisplayText, 10);
         calcData.operatorFlag = true;
     }
-
-    if (calcData.operatorFlag === true)
+    else if (calcData.operatorFlag === true)
     {
-        switch (keyPressed) 
+        completeOperation(keyPressed);
+    }
+
+
+    console.log("Result: " + calcData.result); //DEBUG
+    
+    //setFlag
+    calcData.operatorFlag = true;
+    
+    //reset the display
+    calcData.currentDisplayText = "0";
+    document.querySelector("#grid-screen > p").textContent = calcData.result;
+   
+
+    
+
+}
+
+
+
+
+
+//Handle the enter key being pressed
+function enterPressed()
+{
+    console.log("Enter key has been pressed");          //DEBUG: log the key was pressed
+    completeOperation(calcData.lastOperatorPressed);
+    console.log("result: " + calcData.result);
+    //setFlag
+    calcData.operatorFlag = true;
+
+    //reset the display
+    calcData.currentDisplayText = "0";
+    document.querySelector("#grid-screen > p").textContent = calcData.result;
+}
+
+
+
+
+
+function completeOperation(keyPressed)
+{
+    switch (keyPressed) 
         {
             case '+':
                 calcData.rightOperand = parseInt(calcData.currentDisplayText, 10);
@@ -193,40 +234,4 @@ function operatorPressed()
             default:
                 break;
         }
-    
-    }
-
-
-    console.log("Result: " + calcData.result); //DEBUG
-    
-    //setFlag
-    calcData.operatorFlag = true;
-    
-    //reset the display
-    calcData.currentDisplayText = "0";
-    document.querySelector("#grid-screen > p").textContent = calcData.cresult;
-   
-
-    
-
-}
-
-
-
-
-
-//Handle the enter key being pressed
-function enterPressed()
-{
-    console.log("Enter key has been pressed");          //DEBUG: log the key was pressed
-    document.querySelector("#grid-screen > p").textContent = calcData.cresult;
-}
-
-
-
-
-
-function completeOperation(keyPressed)
-{
-
 }
