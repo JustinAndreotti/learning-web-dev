@@ -201,7 +201,7 @@ function enterPressed()
 
 
 
-
+//Handle the selected Operator and its dependant mathmatics
 function completeOperation(keyPressed)
 {
     switch (keyPressed) 
